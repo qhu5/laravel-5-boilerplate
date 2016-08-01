@@ -76,25 +76,25 @@ class EloquentUserRepository implements UserRepositoryContract
     {
         $user = $this->createUserStub($input);
 
-		DB::transaction(function() use ($user, $roles) {
-			if ($user->save()) {
-				//User Created, Validate Roles
-				$this->validateRoleAmount($user, $roles['assignees_roles']);
+        DB::transaction(function() use ($user, $roles) {
+            if ($user->save()) {
+                //User Created, Validate Roles
+                $this->validateRoleAmount($user, $roles['assignees_roles']);
 
-				//Attach new roles
-				$user->attachRoles($roles['assignees_roles']);
+                //Attach new roles
+                $user->attachRoles($roles['assignees_roles']);
 
-				//Send confirmation email if requested
-				if (isset($input['confirmation_email']) && $user->confirmed == 0) {
-					$this->user->sendConfirmationEmail($user->id);
-				}
+                //Send confirmation email if requested
+                if (isset($input['confirmation_email']) && $user->confirmed == 0) {
+                    $this->user->sendConfirmationEmail($user->id);
+                }
 
-				event(new UserCreated($user));
-				return true;
-			}
+                event(new UserCreated($user));
+                return true;
+            }
 
-        	throw new GeneralException(trans('exceptions.backend.access.users.create_error'));
-		});
+            throw new GeneralException(trans('exceptions.backend.access.users.create_error'));
+        });
     }
 
     /**
@@ -108,22 +108,22 @@ class EloquentUserRepository implements UserRepositoryContract
     {
         $this->checkUserByEmail($input, $user);
 
-		DB::transaction(function() use ($user, $input, $roles) {
-			if ($user->update($input)) {
-				//For whatever reason this just wont work in the above call, so a second is needed for now
-				$user->status = isset($input['status']) ? 1 : 0;
-				$user->confirmed = isset($input['confirmed']) ? 1 : 0;
-				$user->save();
+        DB::transaction(function() use ($user, $input, $roles) {
+            if ($user->update($input)) {
+                //For whatever reason this just wont work in the above call, so a second is needed for now
+                $user->status = isset($input['status']) ? 1 : 0;
+                $user->confirmed = isset($input['confirmed']) ? 1 : 0;
+                $user->save();
 
-				$this->checkUserRolesCount($roles);
-				$this->flushRoles($roles, $user);
+                $this->checkUserRolesCount($roles);
+                $this->flushRoles($roles, $user);
 
-				event(new UserUpdated($user));
-				return true;
-			}
+                event(new UserUpdated($user));
+                return true;
+            }
 
-        	throw new GeneralException(trans('exceptions.backend.access.users.update_error'));
-		});
+            throw new GeneralException(trans('exceptions.backend.access.users.update_error'));
+        });
     }
 
     /**
@@ -175,17 +175,17 @@ class EloquentUserRepository implements UserRepositoryContract
             throw new GeneralException("This user must be deleted first before it can be destroyed permanently.");
         }
 
-		DB::transaction(function() use ($user) {
-			//Detach all roles & permissions
-			$user->detachRoles($user->roles);
+        DB::transaction(function() use ($user) {
+            //Detach all roles & permissions
+            $user->detachRoles($user->roles);
 
-			if ($user->forceDelete()) {
-				event(new UserPermanentlyDeleted($user));
-				return true;
-			}
+            if ($user->forceDelete()) {
+                event(new UserPermanentlyDeleted($user));
+                return true;
+            }
 
-			throw new GeneralException(trans('exceptions.backend.access.users.delete_error'));
-		});
+            throw new GeneralException(trans('exceptions.backend.access.users.delete_error'));
+        });
     }
 
     /**
@@ -315,16 +315,16 @@ class EloquentUserRepository implements UserRepositoryContract
         }
     }
 
-	/**
-	 * Remove old session variables from admin logging in as user
-	 */
-	public function flushTempSession()
-	{
-		//Remove any old session variables
-		session()->forget("admin_user_id");
-		session()->forget("admin_user_name");
-		session()->forget("temp_user_id");
-	}
+    /**
+     * Remove old session variables from admin logging in as user
+     */
+    public function flushTempSession()
+    {
+        //Remove any old session variables
+        session()->forget("admin_user_id");
+        session()->forget("admin_user_name");
+        session()->forget("temp_user_id");
+    }
 
     /**
      * Check to make sure at lease one role is being applied or deactivate user

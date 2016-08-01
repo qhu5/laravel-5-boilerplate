@@ -11,12 +11,12 @@ use App\Models\Access\Role\Role;
 interface RoleRepositoryContract
 {
 
-	/**
+    /**
      * @return mixed
      */
     public function getCount();
 
-	/**
+    /**
      * @return mixed
      */
     public function getForDataTable();
@@ -48,7 +48,7 @@ interface RoleRepositoryContract
      */
     public function destroy(Role $role);
 
-	/**
+    /**
      * @return mixed
      */
     public function getDefaultUserRole();

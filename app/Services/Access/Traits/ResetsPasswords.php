@@ -42,11 +42,11 @@ trait ResetsPasswords
         }
     }
 
-	/**
-	 * @param null $token
-	 * @return $this|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-	 */
-	public function showResetForm($token = null)
+    /**
+     * @param null $token
+     * @return $this|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showResetForm($token = null)
     {
         if (is_null($token)) {
             return $this->showLinkRequestForm();
@@ -54,7 +54,7 @@ trait ResetsPasswords
 
         return view('frontend.auth.passwords.reset')
             ->withToken($token)
-			->withEmail($this->user->getEmailForPasswordToken($token));
+            ->withEmail($this->user->getEmailForPasswordToken($token));
     }
 
     /**
