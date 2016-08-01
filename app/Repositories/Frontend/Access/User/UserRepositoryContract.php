@@ -26,11 +26,11 @@ interface UserRepositoryContract
      */
     public function findByToken($token);
 
-	/**
-	 * @param $token
-	 * @return mixed
-	 */
-	public function getEmailForPasswordToken($token);
+    /**
+     * @param $token
+     * @return mixed
+     */
+    public function getEmailForPasswordToken($token);
 
     /**
      * @param array $data

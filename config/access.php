@@ -80,10 +80,10 @@ return [
      * Application captcha specific settings
      */
     'captcha' => [
-		/*
-		 * The name of the session variable that stores the current login attempts for each user
-		 */
-		'session_key' => 'needs_captcha',
+        /*
+         * The name of the session variable that stores the current login attempts for each user
+         */
+        'session_key' => 'needs_captcha',
 
         /*
          * Whether the registration captcha is on or off

@@ -34,8 +34,8 @@ class RouteServiceProvider extends ServiceProvider
         /**
          * Instead of throwing a generic 404 if the models are not found
          * Redirect back with error message
-		 * TODO: currently this just redirects back but the session flash does not work.
-		 * Keep commented to throw 404, uncomment to redirect back with no message.
+         * TODO: currently this just redirects back but the session flash does not work.
+         * Keep commented to throw 404, uncomment to redirect back with no message.
          */
         /*$router->model('role', Role::class, function () {
             throw new GeneralException(trans('exceptions.backend.access.roles.not_found'));

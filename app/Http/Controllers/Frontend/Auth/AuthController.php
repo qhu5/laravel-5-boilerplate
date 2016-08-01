@@ -38,7 +38,7 @@ class AuthController extends Controller
         if (access()->allow('view-backend')) {
             return route('admin.dashboard');
         }
-        
+
         return route('frontend.user.dashboard');
     }
 }

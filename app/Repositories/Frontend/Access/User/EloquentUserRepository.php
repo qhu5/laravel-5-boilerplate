@@ -67,17 +67,17 @@ class EloquentUserRepository implements UserRepositoryContract
         return $user;
     }
 
-	/**
-	 * TODO: Move this somewhere more appropriate
-	 * @param $token
-	 * @return mixed
-	 * @throws GeneralException
-	 */
-	public function getEmailForPasswordToken($token) {
-		if ($row = DB::table('password_resets')->where('token', $token)->first())
-			return $row->email;
-		throw new GeneralException(trans('auth.unknown'));
-	}
+    /**
+     * TODO: Move this somewhere more appropriate
+     * @param $token
+     * @return mixed
+     * @throws GeneralException
+     */
+    public function getEmailForPasswordToken($token) {
+        if ($row = DB::table('password_resets')->where('token', $token)->first())
+            return $row->email;
+        throw new GeneralException(trans('auth.unknown'));
+    }
 
     /**
      * @param array $data
@@ -86,37 +86,37 @@ class EloquentUserRepository implements UserRepositoryContract
      */
     public function create(array $data, $provider = false)
     {
-    	$user = new User;
-		$user->name = $data['name'];
-		$user->email = $data['email'];
-		$user->confirmation_code = md5(uniqid(mt_rand(), true));
-		$user->status = 1;
-		$user->password = $provider ? null : bcrypt($data['password']);
-		$user->confirmed = $provider ? 1 : (config('access.users.confirm_email') ? 0 : 1);
+        $user = new User;
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->confirmation_code = md5(uniqid(mt_rand(), true));
+        $user->status = 1;
+        $user->password = $provider ? null : bcrypt($data['password']);
+        $user->confirmed = $provider ? 1 : (config('access.users.confirm_email') ? 0 : 1);
 
-		DB::transaction(function() use ($user) {
-			if ($user->save()) {
-				/**
-				 * Add the default site role to the new user
-				 */
-				$user->attachRole($this->role->getDefaultUserRole());
-			}
-		});
+        DB::transaction(function() use ($user) {
+            if ($user->save()) {
+                /**
+                 * Add the default site role to the new user
+                 */
+                $user->attachRole($this->role->getDefaultUserRole());
+            }
+        });
 
-		/**
-		 * If users have to confirm their email and this is not a social account,
-		 * send the confirmation email
-		 *
-		 * If this is a social account they are confirmed through the social provider by default
-		 */
-		if (config('access.users.confirm_email') && $provider === false) {
-			$this->sendConfirmationEmail($user);
-		}
+        /**
+         * If users have to confirm their email and this is not a social account,
+         * send the confirmation email
+         *
+         * If this is a social account they are confirmed through the social provider by default
+         */
+        if (config('access.users.confirm_email') && $provider === false) {
+            $this->sendConfirmationEmail($user);
+        }
 
-		/**
-		 * Return the user object
-		 */
-		return $user;
+        /**
+         * Return the user object
+         */
+        return $user;
     }
 
     /**
@@ -129,7 +129,7 @@ class EloquentUserRepository implements UserRepositoryContract
         /**
          * User email may not provided.
          */
-        $user_email = $data->email ? : "{$data->id}@{$provider}.com";
+        $user_email = $data->email ?: "{$data->id}@{$provider}.com";
 
         /**
          * Check to see if there is a user with this email first
@@ -193,14 +193,14 @@ class EloquentUserRepository implements UserRepositoryContract
         if ($user->confirmation_code == $token) {
             $user->confirmed = 1;
 
-			event(new UserConfirmed($user));
+            event(new UserConfirmed($user));
             return $user->save();
         }
 
         throw new GeneralException(trans('exceptions.frontend.auth.confirmation.mismatch'));
     }
 
-	/**
+    /**
      * @param $user
      * @return bool
      * @throws GeneralException
