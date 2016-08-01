@@ -29,7 +29,7 @@ class UserTableSeeder extends Seeder
             [
                 'name'              => 'Admin Istrator',
                 'email'             => 'admin@admin.com',
-                'password'          => bcrypt('1234'),
+                'password'          => bcrypt('admin'),
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed'         => true,
                 'created_at'        => Carbon::now(),
@@ -38,7 +38,7 @@ class UserTableSeeder extends Seeder
             [
                 'name'              => 'Backend User',
                 'email'             => 'executive@executive.com',
-                'password'          => bcrypt('1234'),
+                'password'          => bcrypt('executive'),
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed'         => true,
                 'created_at'        => Carbon::now(),
@@ -47,7 +47,7 @@ class UserTableSeeder extends Seeder
             [
                 'name'              => 'Default User',
                 'email'             => 'user@user.com',
-                'password'          => bcrypt('1234'),
+                'password'          => bcrypt('user'),
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
                 'confirmed'         => true,
                 'created_at'        => Carbon::now(),

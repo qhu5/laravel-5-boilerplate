@@ -25,7 +25,9 @@ class LocaleMiddleware
          */
         if (config('locale.status')) {
 
-            if (session()->has('locale') && in_array(session()->get('locale'), array_keys(config('locale.languages')))) {
+            $sessionHasCorrectLocale = session()->has('locale') && in_array(session()->get('locale'), array_keys(config('locale.languages')));
+
+            if ($sessionHasCorrectLocale) {
 
                 /**
                  * Set the Laravel locale
@@ -44,8 +46,8 @@ class LocaleMiddleware
 
                 /**
                  * Set the session variable for whether or not the app is using RTL support
-				 * for the current language being selected
-				 * For use in the blade directive in BladeServiceProvider
+                 * for the current language being selected
+                 * For use in the blade directive in BladeServiceProvider
                  */
                 if (config('locale.languages')[session()->get('locale')][2]) {
                     session(['lang-rtl' => true]);

@@ -32,51 +32,51 @@ class RoleController extends Controller
      * @param PermissionRepositoryContract $permissions
      */
     public function __construct(RoleRepositoryContract $roles, PermissionRepositoryContract $permissions)
-	{
+    {
         $this->roles = $roles;
         $this->permissions = $permissions;
     }
 
-	/**
-	 * @param ManageRoleRequest $request
-	 * @return mixed
-	 */
-	public function index(ManageRoleRequest $request)
-	{
+    /**
+     * @param ManageRoleRequest $request
+     * @return mixed
+     */
+    public function index(ManageRoleRequest $request)
+    {
         return view('backend.access.roles.index');
     }
 
-	/**
-	 * @param ManageRoleRequest $request
-	 * @return mixed
-	 */
-	public function get(ManageRoleRequest $request)
-	{
-		return Datatables::of($this->roles->getForDataTable())
-			->addColumn('permissions', function($role) {
-				$permissions = [];
+    /**
+     * @param ManageRoleRequest $request
+     * @return mixed
+     */
+    public function get(ManageRoleRequest $request)
+    {
+        return Datatables::of($this->roles->getForDataTable())
+            ->addColumn('permissions', function($role) {
+                $permissions = [];
 
-				if ($role->all)
-					return '<span class="label label-success">' . trans('labels.general.all') . '</span>';
+                if ($role->all)
+                    return '<span class="label label-success">' . trans('labels.general.all') . '</span>';
 
-				if (count($role->permissions) > 0) {
-					foreach ($role->permissions as $permission) {
-						array_push($permissions, $permission->display_name);
-					}
+                if (count($role->permissions) > 0) {
+                    foreach ($role->permissions as $permission) {
+                        array_push($permissions, $permission->display_name);
+                    }
 
-					return implode("<br/>", $permissions);
-				} else {
-					return '<span class="label label-danger">' . trans('labels.general.none') . '</span>';
-				}
-			})
-			->addColumn('users', function($role) {
-				return $role->users()->count();
-			})
-			->addColumn('actions', function($role) {
-				return $role->action_buttons;
-			})
-			->make(true);
-	}
+                    return implode("<br/>", $permissions);
+                } else {
+                    return '<span class="label label-danger">' . trans('labels.general.none') . '</span>';
+                }
+            })
+            ->addColumn('users', function($role) {
+                return $role->users()->count();
+            })
+            ->addColumn('actions', function($role) {
+                return $role->action_buttons;
+            })
+            ->make(true);
+    }
 
     /**
      * @param ManageRoleRequest $request
@@ -86,7 +86,7 @@ class RoleController extends Controller
     {
         return view('backend.access.roles.create')
             ->withPermissions($this->permissions->getAllPermissions())
-			->withRoleCount($this->roles->getCount());
+            ->withRoleCount($this->roles->getCount());
     }
 
     /**
