@@ -2,9 +2,11 @@
 
 namespace App\Repositories\Backend\Access\User;
 
-use App\Models\Access\User\User;
 use Illuminate\Support\Facades\DB;
+
 use App\Exceptions\GeneralException;
+use App\Exceptions\Backend\Access\User\UserNeedsRolesException;
+use App\Models\Access\User\User;
 use App\Events\Backend\Access\User\UserCreated;
 use App\Events\Backend\Access\User\UserUpdated;
 use App\Events\Backend\Access\User\UserDeleted;
@@ -13,7 +15,6 @@ use App\Events\Backend\Access\User\UserDeactivated;
 use App\Events\Backend\Access\User\UserReactivated;
 use App\Events\Backend\Access\User\UserPasswordChanged;
 use App\Events\Backend\Access\User\UserPermanentlyDeleted;
-use App\Exceptions\Backend\Access\User\UserNeedsRolesException;
 use App\Repositories\Backend\Access\Role\RoleRepositoryContract;
 use App\Repositories\Frontend\Access\User\UserRepositoryContract as FrontendUserRepositoryContract;
 

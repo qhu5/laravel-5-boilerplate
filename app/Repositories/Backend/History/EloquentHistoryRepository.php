@@ -67,7 +67,6 @@ class EloquentHistoryRepository implements HistoryContract {
 
         if (! $history->count())
             return trans("history.backend.none_for_type");
-
         return $this->buildList($history);
     }
 

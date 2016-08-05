@@ -157,7 +157,7 @@ trait UserAttribute
         return '';
     }
 
-	/**
+    /**
      * @return string
      */
     public function getRestoreButtonAttribute()
@@ -165,7 +165,7 @@ trait UserAttribute
         return '<a href="' . route('admin.access.user.restore', $this) . '" name="restore_user" class="btn btn-xs btn-info"><i class="fa fa-refresh" data-toggle="tooltip" data-placement="top" title="' . trans('buttons.backend.access.users.restore_user') . '"></i></a> ';
     }
 
-	/**
+    /**
      * @return string
      */
     public function getDeletePermanentlyButtonAttribute()
@@ -173,7 +173,7 @@ trait UserAttribute
         return '<a href="' . route('admin.access.user.delete-permanently', $this) . '" name="delete_user_perm" class="btn btn-xs btn-danger"><i class="fa fa-trash" data-toggle="tooltip" data-placement="top" title="' . trans('buttons.backend.access.users.delete_permanently') . '"></i></a> ';
     }
 
-	/**
+    /**
      * @return string
      */
     public function getLoginAsButtonAttribute()

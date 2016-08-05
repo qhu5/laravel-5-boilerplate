@@ -5,9 +5,10 @@ namespace App\Services\Access\Traits;
 use Illuminate\Http\Request;
 use Illuminate\Cache\RateLimiter;
 use App\Exceptions\GeneralException;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+
 use App\Events\Frontend\Auth\UserLoggedIn;
 use App\Events\Frontend\Auth\UserLoggedOut;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use App\Http\Requests\Frontend\Auth\LoginRequest;
 use App\Repositories\Backend\Access\User\UserRepositoryContract;
 

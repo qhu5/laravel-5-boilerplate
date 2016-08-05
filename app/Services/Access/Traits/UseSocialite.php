@@ -3,8 +3,9 @@
 namespace App\Services\Access\Traits;
 
 use Illuminate\Http\Request;
-use App\Exceptions\GeneralException;
 use Laravel\Socialite\Facades\Socialite;
+
+use App\Exceptions\GeneralException;
 use App\Events\Frontend\Auth\UserLoggedIn;
 
 /**

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Backend\Access\Role;
 
-use App\Models\Access\Role\Role;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Facades\Datatables;
+
+use App\Models\Access\Role\Role;
 use App\Http\Requests\Backend\Access\Role\StoreRoleRequest;
 use App\Http\Requests\Backend\Access\Role\ManageRoleRequest;
 use App\Http\Requests\Backend\Access\Role\UpdateRoleRequest;

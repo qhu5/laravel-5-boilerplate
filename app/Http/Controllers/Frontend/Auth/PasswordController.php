@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
+
 use App\Services\Access\Traits\ChangePasswords;
 use App\Services\Access\Traits\ResetsPasswords;
 use App\Repositories\Frontend\Access\User\UserRepositoryContract;
