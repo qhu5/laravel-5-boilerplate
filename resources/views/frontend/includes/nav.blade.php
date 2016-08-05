@@ -15,6 +15,7 @@
             <ul class="nav navbar-nav">
                 <li>{{ link_to_route('frontend.index', trans('navs.general.home')) }}</li>
                 <li>{{ link_to_route('frontend.macros', trans('navs.frontend.macros')) }}</li>
+                <li>{{ link_to_route('session_test.index', 'Session Test') }}</li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

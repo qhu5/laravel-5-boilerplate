@@ -16,6 +16,10 @@ Route::group(['middleware' => 'web'], function() {
         require(__DIR__ . '/Routes/Frontend/Frontend.php');
         require(__DIR__ . '/Routes/Frontend/Access.php');
     });
+
+    Route::group(['namespace' => 'SessionTest'], function() {
+        require(__DIR__ . '/Routes/SessionTest/SessionTest.php');
+    });
 });
 
 /**
