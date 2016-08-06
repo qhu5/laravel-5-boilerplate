@@ -1,6 +1,7 @@
 <?php namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+
 use App\Repositories\Backend\History\HistoryContract;
 use App\Repositories\Backend\History\EloquentHistoryRepository;
 use App\Repositories\Backend\History\Facades\History as HistoryFacade;

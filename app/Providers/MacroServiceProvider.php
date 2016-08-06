@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use App\Services\Macros\Macros;
 use Collective\Html\HtmlServiceProvider;
+
+use App\Services\Macros\Macros;
 
 /**
  * Class MacroServiceProvider

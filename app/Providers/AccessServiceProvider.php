@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use App\Services\Access\Access;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+
+use App\Services\Access\Access;
 
 /**
  * Class AccessServiceProvider

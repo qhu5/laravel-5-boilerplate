@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Access\User\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+
+use App\Models\Access\User\User;
 
 class RouteServiceProvider extends ServiceProvider
 {

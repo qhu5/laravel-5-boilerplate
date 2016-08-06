@@ -8,8 +8,9 @@ use Illuminate\Session\TokenMismatchException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use App\Exceptions\Backend\Access\User\UserNeedsRolesException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+
+use App\Exceptions\Backend\Access\User\UserNeedsRolesException;
 
 /**
  * Class Handler
