@@ -67,6 +67,7 @@ return [
             'pt-BR' => 'Brasilianisches Portugiesisch (Brazilian Portuguese)',
             'sv' => 'Schwedisch (Swedish)',
             'th' => 'Thai',
+            'zh' => 'Chinese'
         ],
     ],
 ];

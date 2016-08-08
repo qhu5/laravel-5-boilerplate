@@ -67,6 +67,7 @@ return [
             'pt-BR' => 'โปรตุเกสแบบบราซิล (Brazilian Portuguese)',
             'sv' => 'สวีเดน (Swedish)',
             'th' => 'ไทย (Thai)',
+            'zh' => 'Chinese'
         ],
     ],
 ];
